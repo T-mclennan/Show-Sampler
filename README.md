@@ -1,4 +1,4 @@
-## ShowTaster App:
+## Show Sampler App:
 
 #### Currently under construction - still doing design and mockups! 
 

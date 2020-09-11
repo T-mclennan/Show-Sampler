@@ -1,6 +1,6 @@
 ## ShowTaster App:
 
-#### Currently under construction.
+#### Currently under construction - still doing design and mockups! 
 
 ### Auto-generate a spotify playlist out of upcoming music acts in chosen city.
 

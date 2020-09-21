@@ -1,0 +1,13 @@
+.player-header {
+  font-size: 4rem;
+  color: whitesmoke;
+}
+
+.player-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: rgb(23, 23, 105);
+  height: 80vh;
+}

@@ -8,7 +8,10 @@ export default function Home() {
         <h1>Show Sampler</h1>
         <p>Listen to the music of upcoming concerts</p>
 
-        <button style={{ marginTop: '2rem', borderRadius: '1em' }}>
+        <button
+          onClick={() => (window.location = 'http://localhost:8888/login')}
+          style={{ marginTop: '2rem', borderRadius: '1em' }}
+        >
           Sign In!
         </button>
       </div>

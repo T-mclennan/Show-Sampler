@@ -13,7 +13,7 @@ export const fetchPlaylist = async (accessToken) => {
   }
 };
 
-export const searchArtists = async (artist, accessToken) => {
+export const searchArtist = async (artist, accessToken) => {
   let playlist = [];
   try {
     const { data } = await axios.get(
@@ -26,6 +26,27 @@ export const searchArtists = async (artist, accessToken) => {
     const track = data.tracks.items[0];
     console.log(track);
     return track;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const artistsToPlayist = async (artists, accessToken) => {
+  try {
+    let playlist = await Promise.all(
+      artists.map(async (artist) => {
+        const { data } = await axios.get(
+          `https://api.spotify.com/v1/search?q=artist:${artist}&type=track&limit=1`,
+          {
+            headers: { Authorization: 'Bearer ' + accessToken },
+          }
+        );
+        return data.tracks.items[0];
+      })
+    );
+
+    console.log(playlist);
+    return playlist;
   } catch (error) {
     console.log(error);
   }

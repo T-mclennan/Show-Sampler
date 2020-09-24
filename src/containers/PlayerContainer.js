@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import queryString from 'query-string';
-import { fetchPlaylist, searchArtists } from '../api/index';
+import { fetchPlaylist, searchArtist, artistsToPlayist } from '../api/index';
 import './PlayerContainer.css';
 
 export default function PlayerContainer() {
@@ -14,17 +14,25 @@ export default function PlayerContainer() {
 
   const [data, setData] = useState({});
 
+  const artistData = [
+    'dua lipa',
+    'mastodon',
+    'nine inch nails',
+    'berri txarrak',
+    'queens of the stone age',
+  ];
   useLayoutEffect(() => {
     const fetchAPI = async () => {
-      const data = await searchArtists('dua lipa', playerToken);
+      const data = await artistsToPlayist(artistData, playerToken);
+      console.log('data: ');
+      console.log(data);
       setData(data);
-      setUriList(data.uri);
+      setUriList(data.map((track) => track.uri));
     };
 
     fetchAPI();
   }, [playerToken]);
 
-  console.log(playerToken);
   return (
     <div className='player-container'>
       <p className='player-header'>This is the Playlist Page!</p>

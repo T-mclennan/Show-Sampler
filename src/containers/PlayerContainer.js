@@ -1,7 +1,12 @@
 import React, { useLayoutEffect, useState } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import queryString from 'query-string';
-import { fetchPlaylist, searchArtist, artistsToPlayist } from '../api/index';
+import {
+  fetchPlaylist,
+  searchArtist,
+  artistsToPlayist,
+  fetchShows,
+} from '../api/index';
 import './PlayerContainer.css';
 
 export default function PlayerContainer() {
@@ -23,11 +28,12 @@ export default function PlayerContainer() {
   ];
   useLayoutEffect(() => {
     const fetchAPI = async () => {
-      const data = await artistsToPlayist(artistData, playerToken);
+      // const data = await artistsToPlayist(artistData, playerToken);
+      const data = await fetchShows('San Francisco');
       console.log('data: ');
       console.log(data);
       setData(data);
-      setUriList(data.map((track) => track.uri));
+      // setUriList(data.map((track) => track.uri));
     };
 
     fetchAPI();

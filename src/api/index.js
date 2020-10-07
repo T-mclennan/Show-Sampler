@@ -60,27 +60,31 @@ export const searchArtist = async (artist, accessToken) => {
 //   }
 // };
 
+// artistsToPlayist takes an array of artist names, returns playlist of URI tracks:
+//Input: Array of strings
+//Output: Array of strings
+
 export const artistsToPlayist = async (artists, accessToken) => {
   try {
+    const n = Math.ceil(10 / artists.length);
     let playlist = await Promise.all(
       artists.map(async (artist) => {
         try {
           const { data } = await axios.get(
-            `https://api.spotify.com/v1/search?q=artist:${artist}&type=track&limit=2`,
+            `https://api.spotify.com/v1/search?q=artist:${artist}&type=track&limit=${n}`,
             {
               headers: { Authorization: 'Bearer ' + accessToken },
             }
           );
-          return data.tracks.items[0].uri;
+          const uri_list = data.tracks.items.map(({ uri }) => uri);
+          return uri_list;
         } catch (e) {
           console.log(e);
           return null;
         }
       })
     );
-    const filtered_list = playlist.filter((artist) => artist !== null);
-    console.log('playlist: ');
-    console.log(filtered_list);
+    const filtered_list = playlist.flat().filter((artist) => artist !== null);
     return filtered_list;
   } catch (error) {
     console.log(error);

@@ -29,7 +29,7 @@ export default function PlayerContainer() {
   useLayoutEffect(() => {
     const fetchAPI = async () => {
       // const data = await artistsToPlayist(artistData, playerToken);
-      const { data } = await fetchShows('Miami');
+      const { data } = await fetchShows('Boston');
       console.log('data: ');
       setData(data);
       const playlist = await artistsToPlayist(data[0].artist_list, playerToken);

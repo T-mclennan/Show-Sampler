@@ -18,26 +18,24 @@ export default function PlayerContainer() {
   ]);
 
   const [data, setData] = useState({});
+  const [eventIndex, setEventIndex] = useState(3);
 
-  const artistData = [
-    'dua lipa',
-    'mastodon',
-    'nine inch nails',
-    'berri txarrak',
-    'queens of the stone age',
-  ];
   useLayoutEffect(() => {
     const fetchAPI = async () => {
       // const data = await artistsToPlayist(artistData, playerToken);
       const { data } = await fetchShows('Boston');
       console.log('data: ');
       setData(data);
-      const playlist = await artistsToPlayist(data[0].artist_list, playerToken);
-      setUriList(playlist);
+      setCurrentPlaylist(data[eventIndex].artist_list);
     };
 
     fetchAPI();
-  }, [playerToken]);
+  }, [playerToken, eventIndex]);
+
+  const setCurrentPlaylist = async (artist_list) => {
+    const playlist = await artistsToPlayist(artist_list, playerToken);
+    setUriList(playlist);
+  };
 
   return (
     <div className='player-container'>

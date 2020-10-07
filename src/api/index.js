@@ -4,13 +4,11 @@ import keys from '../config/keys';
 export const fetchShows = async (city) => {
   try {
     console.log('Fetching: ', city);
-    const event_list = await axios.get(`http://localhost:8888/api/events`, {
+    const event_list = await axios.get(keys.URL + `events`, {
       params: {
         city: city,
       },
     });
-
-    console.log(event_list);
     return event_list;
   } catch (error) {
     console.log(error);
@@ -47,19 +45,6 @@ export const searchArtist = async (artist, accessToken) => {
   }
 };
 
-// export const fetchShows = async (city) => {
-//   try {
-//     const { data } = await axios.get(
-//       `https://app.ticketmaster.com/discovery/v2/events.json?genreId=KnvZfZ7vAvF&size=200&classificationName=music&city=${city}&apikey=${keys.TICKET_CONSUMER_KEY}`
-//     );
-
-//     console.log(data._embedded.events);
-//     return data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 // artistsToPlayist takes an array of artist names, returns playlist of URI tracks:
 //Input: Array of strings
 //Output: Array of strings
@@ -71,7 +56,7 @@ export const artistsToPlayist = async (artists, accessToken) => {
       artists.map(async (artist) => {
         try {
           const { data } = await axios.get(
-            `https://api.spotify.com/v1/search?q=artist:${artist}&type=track&limit=${n}`,
+            `https://api.spotify.com/v1/search?q=artist:"${artist}"&type=track&limit=${n}`,
             {
               headers: { Authorization: 'Bearer ' + accessToken },
             }

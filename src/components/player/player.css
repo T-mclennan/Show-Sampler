@@ -1,0 +1,35 @@
+.player-header {
+  font-size: 4rem;
+  color: whitesmoke;
+}
+
+.player-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: rgb(23, 23, 105); */
+  height: 93%;
+}
+
+.event-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 6rem;
+  width: 100%;
+  background-color: rgb(23, 29, 29);
+  color: whitesmoke;
+  padding: 1rem;
+}
+
+.player-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(23, 23, 105);
+  color: whitesmoke;
+  height: 100%;
+  width: 100%;
+}

@@ -1,13 +1,16 @@
 import React, { useLayoutEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import queryString from 'query-string';
+import EventNav from './EventNav';
+import PlayerDisplay from './PlayerDisplay';
 import {
   fetchPlaylist,
   searchArtist,
   artistsToPlayist,
   fetchShows,
-} from '../api/index';
-import './PlayerContainer.css';
+} from '../../api/';
+import './player.css';
 
 export default function PlayerContainer() {
   const { access_token } = queryString.parse(window.location.search);
@@ -18,13 +21,14 @@ export default function PlayerContainer() {
   ]);
 
   const [data, setData] = useState({});
-  const [eventIndex, setEventIndex] = useState(3);
+  const [eventIndex, setEventIndex] = useState(5);
 
   useLayoutEffect(() => {
     const fetchAPI = async () => {
       // const data = await artistsToPlayist(artistData, playerToken);
-      const { data } = await fetchShows('Boston');
+      const { data } = await fetchShows('San Francisco');
       console.log('data: ');
+      console.log(data);
       setData(data);
       setCurrentPlaylist(data[eventIndex].artist_list);
     };
@@ -39,7 +43,9 @@ export default function PlayerContainer() {
 
   return (
     <div className='player-container'>
-      <p className='player-header'>This is the Playlist Page!</p>
+      <EventNav />
+      {/* <p className='player-header'>This is the Playlist Page!</p> */}
+      <PlayerDisplay />
       <SpotifyPlayer
         token={playerToken}
         uris={uriList}

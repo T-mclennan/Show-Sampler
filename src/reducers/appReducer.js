@@ -5,6 +5,8 @@
 
 const initialState = {
   authToken: null,
+  colorScheme: 'light',
+  allEventData: {},
 };
 
 const appReducer = (state = initialState, action) => {

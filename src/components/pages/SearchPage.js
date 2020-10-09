@@ -1,12 +1,35 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
-export const SearchPage = () => {
-  return <div></div>;
-};
+export default function SearchPage() {
+  const clickHandler = () => {
+    // SEARCH TICKETMASTER:
+    // POPULATE DATA
 
-const mapStateToProps = (state) => ({});
+    // IF NO TOKEN:
+    window.location = 'http://localhost:8888/login';
 
-const mapDispatchToProps = {};
+    // THEN RETURN HERE
+    // IF LOGIN FAILS DISPLAY LOGIN ERROR
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
+    // ELSE
+    // ROUTE TO PLAYBACK
+  };
+
+  return (
+    <div className='Search-container'>
+      <h1>Show Sampler</h1>
+      <p>Listen to the music of upcoming concerts</p>
+
+      <button
+        onClick={clickHandler}
+        style={{
+          marginTop: '2rem',
+          borderRadius: '1em',
+          padding: '1em 5em 5em 1em',
+        }}
+      >
+        Generate Playlist!
+      </button>
+    </div>
+  );
+}

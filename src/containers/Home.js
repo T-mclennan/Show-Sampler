@@ -2,6 +2,21 @@ import React from 'react';
 import './Home.css';
 
 export default function Home() {
+  const clickHandler = () => {
+    // SEARCH TICKETMASTER:
+    // POPULATE DATA
+
+    // IF NO TOKEN:
+    // window.location = 'http://localhost:3000/search';
+    window.location = 'http://localhost:8888/login';
+
+    // THEN RETURN HERE
+    // IF LOGIN FAILS DISPLAY LOGIN ERROR
+
+    // ELSE
+    // ROUTE TO PLAYBACK
+  };
+
   return (
     <div className='Home'>
       <div className='lander'>
@@ -9,7 +24,7 @@ export default function Home() {
         <p>Listen to the music of upcoming concerts</p>
 
         <button
-          onClick={() => (window.location = 'http://localhost:8888/login')}
+          onClick={clickHandler}
           style={{ marginTop: '2rem', borderRadius: '1em' }}
         >
           Sign In!

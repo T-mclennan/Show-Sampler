@@ -12,14 +12,42 @@ const initialState = {
   playlist: 'spotify:artist:6M2wZ9GZgrQXHCFfjv46we',
   display: 'event',
   artist: {},
+  event_count: 0,
 };
 
 const playerReducer = (state = initialState, action) => {
+  const { event_count, event_index } = state;
+
   switch (action.type) {
     case 'INCREMENT_EVENT':
-      return { ...state, event_index: state.event_index + 1 };
+      const i = event_index < event_count - 1 ? event_index + 1 : 0;
+      console.log(i);
+      return {
+        ...state,
+        event_index: i,
+      };
+
     case 'DECREMENT_EVENT':
-      return { ...state, event_index: state.event_index - 1 };
+      const d = event_index > 0 ? event_index - 1 : event_count - 1;
+      console.log(d);
+      return {
+        ...state,
+        event_index: d,
+      };
+    case 'SET_CURRENT_EVENT':
+      return { ...state, current_event_data: action.payload };
+    case 'SET_TOTAL_EVENT_DATA':
+      return { ...state, total_event_data: action.payload };
+    case 'SET_PLAYLIST':
+      return { ...state, playlist: action.payload };
+
+    case 'INITIALIZE_EVENT_DATA':
+      return {
+        ...state,
+        total_event_data: action.payload,
+        current_event_data: action.payload[event_index],
+        event_count: action.payload.length,
+      };
     default:
       return state;
   }

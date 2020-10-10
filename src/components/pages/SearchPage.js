@@ -1,35 +1,28 @@
 import React from 'react';
+import './SearchPage.css';
 
-export default function SearchPage() {
+const SearchPage = () => {
   const clickHandler = () => {
-    // SEARCH TICKETMASTER:
-    // POPULATE DATA
-
-    // IF NO TOKEN:
+    //TODO: Error handling for bad login credentials
     window.location = 'http://localhost:8888/login';
-
-    // THEN RETURN HERE
-    // IF LOGIN FAILS DISPLAY LOGIN ERROR
-
-    // ELSE
-    // ROUTE TO PLAYBACK
   };
 
   return (
     <div className='Search-container'>
-      <h1>Show Sampler</h1>
-      <p>Listen to the music of upcoming concerts</p>
+      <h1>Search Page</h1>
+      <p>search form here</p>
 
       <button
         onClick={clickHandler}
         style={{
           marginTop: '2rem',
           borderRadius: '1em',
-          padding: '1em 5em 5em 1em',
         }}
       >
         Generate Playlist!
       </button>
     </div>
   );
-}
+};
+
+export default SearchPage;

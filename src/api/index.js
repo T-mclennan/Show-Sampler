@@ -15,7 +15,18 @@ export const fetchShows = async (city) => {
   }
 };
 
-export const fetchPlaylist = async (accessToken) => {
+export const fetchPlaylist = async (accessToken, refreshToken) => {
+  //   axios.get('https://api.spotify.com/v1/me', {
+  //         headers: { Authorization: 'Bearer ' + accessToken },
+  //       }).then(response => {
+  //   if (response.status === 401) {
+  //     // try getting the new access token and repeat the same request
+  //   }
+  //   // otherwise carry on
+  // }).catch(error) {
+  //   console.error('Error: ', error)
+  // }
+
   try {
     const { data } = await axios.get('https://api.spotify.com/v1/me', {
       headers: { Authorization: 'Bearer ' + accessToken },
@@ -50,6 +61,7 @@ export const searchArtist = async (artist, accessToken) => {
 //Output: Array of strings
 
 export const artistsToPlayist = async (artists, accessToken) => {
+  console.log(accessToken);
   try {
     const n = Math.ceil(10 / artists.length);
     let playlist = await Promise.all(

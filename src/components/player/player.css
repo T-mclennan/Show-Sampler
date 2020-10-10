@@ -14,13 +14,23 @@
 
 .event-nav {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  height: 6rem;
+  height: 6em;
   width: 100%;
   background-color: rgb(23, 29, 29);
   color: whitesmoke;
-  padding: 1rem;
+  padding: 1em 2em;
+}
+
+.btn {
+  height: 4rem;
+  width: 10rem;
+  background-color: rgb(25, 99, 104);
+  /* border: 1px whitesmoke; */
+  border-radius: 1.5rem;
+  color: whitesmoke;
 }
 
 .player-display {

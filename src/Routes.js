@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import SearchPage from './components/pages/SearchPage';
-import Home from './containers/Home';
+import Landing from './components/pages/Landing';
 import PlayerContainer from './components/player/PlayerContainer';
 
 export default function Routes() {
   return (
     <Switch>
       <Route exact path='/'>
-        <Home />
+        <Landing />
       </Route>
       <Route exact path='/search'>
         <SearchPage />

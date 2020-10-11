@@ -27,3 +27,7 @@ export const initializeEventData = (data) => {
     payload: data,
   };
 };
+
+//TODO:
+//LOADING
+//ERROR

@@ -7,9 +7,8 @@ import PropTypes from 'prop-types';
 
 function PlayerDisplay({ event_data }) {
   // const data = useSelector((state) => state.current_event_data);
-  console.log('EVENTDATA');
+
   const image = event_data.images ? event_data.images[8] : 'nada';
-  console.log(image);
   // const source = event_data.images[5];
   // console.log(source);
   return (

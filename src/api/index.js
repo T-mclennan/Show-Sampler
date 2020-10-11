@@ -61,7 +61,6 @@ export const searchArtist = async (artist, accessToken) => {
 //Output: Array of strings
 
 export const artistsToPlayist = async (artists, accessToken) => {
-  console.log(accessToken);
   try {
     const n = Math.ceil(10 / artists.length);
     let playlist = await Promise.all(

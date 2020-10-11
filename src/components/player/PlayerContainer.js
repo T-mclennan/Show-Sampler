@@ -11,6 +11,7 @@ export default function PlayerContainer() {
   const auth = params.get('access_token');
   const index = useSelector((state) => state.playerReducer.event_index);
   const [authToken, setAuthToken] = useState(auth);
+  const [eventData, setEventData] = useState({});
 
   const [uriList, setUriList] = useState([
     'spotify:artist:6M2wZ9GZgrQXHCFfjv46we',
@@ -25,8 +26,10 @@ export default function PlayerContainer() {
 
   useLayoutEffect(() => {
     const fetchAPI = async () => {
-      const { data } = await fetchShows('Chicago');
+      const { data } = await fetchShows('Boston');
+      console.log(data);
       dispatch(initializeEventData(data));
+      setEventData(data[index]);
       setCurrentPlaylist(data[index].artist_list);
     };
 
@@ -39,5 +42,7 @@ export default function PlayerContainer() {
     setUriList(playlist);
   };
 
-  return <Player authToken={authToken} uriList={uriList} />;
+  return (
+    <Player authToken={authToken} uriList={uriList} eventData={eventData} />
+  );
 }

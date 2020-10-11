@@ -21,7 +21,6 @@ const playerReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'INCREMENT_EVENT':
       const i = event_index < event_count - 1 ? event_index + 1 : 0;
-      console.log(i);
       return {
         ...state,
         event_index: i,
@@ -29,7 +28,6 @@ const playerReducer = (state = initialState, action) => {
 
     case 'DECREMENT_EVENT':
       const d = event_index > 0 ? event_index - 1 : event_count - 1;
-      console.log(d);
       return {
         ...state,
         event_index: d,

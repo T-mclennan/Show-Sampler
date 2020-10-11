@@ -6,11 +6,11 @@ import './player.css';
 
 import PropTypes from 'prop-types';
 
-function Player({ authToken, uriList }) {
+function Player({ authToken, uriList, eventData }) {
   return (
     <div className='player-container'>
       <EventNav />
-      <PlayerDisplay />
+      <PlayerDisplay event_data={eventData} />
       <SpotifyPlayer
         token={authToken}
         uris={uriList}

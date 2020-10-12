@@ -1,13 +1,15 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './SearchPage.css';
 import { useFormik } from 'formik';
 
 const SearchPage = () => {
   const formik = useFormik({});
+  const history = useHistory();
 
   const clickHandler = () => {
     //TODO: Error handling for bad login credentials
-    window.location = 'http://localhost:8888/login';
+    history.push('/playback');
   };
 
   return (

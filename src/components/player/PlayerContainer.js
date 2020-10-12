@@ -1,7 +1,6 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { artistsToPlayist, fetchShows } from '../../api/';
-// import { addTokens } from '../../actions/appActions';
 import { setPlaylist, initializeEventData } from '../../actions/playerActions';
 import Player from './Player';
 

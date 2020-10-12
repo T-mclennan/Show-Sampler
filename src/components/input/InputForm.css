@@ -1,0 +1,55 @@
+html {
+  font-size: 20px;
+}
+
+label {
+  font-weight: bold;
+  display: flex;
+  font-size: 0.8rem;
+  /* margin-bottom: 5px; */
+}
+
+input[type='text'],
+input[type='email'],
+textarea {
+  display: block;
+  width: 15rem;
+  padding: 6px 6px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  /* margin-bottom: 20px; */
+}
+button {
+}
+
+/* .form-control {
+  margin-bottom: 20px;
+} */
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: red;
+}
+
+/* .react-datepicker {
+  height: 500px;
+  width: 400px;
+}
+
+.react-datepicker__month-container {
+  height: 500px;
+  width: 400px;
+} */
+
+/* .react-datepicker__day {
+  padding: 2px;
+  margin: 1px;
+} */

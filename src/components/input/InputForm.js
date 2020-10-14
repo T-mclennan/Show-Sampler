@@ -54,8 +54,6 @@ const InputForm = ({ callback }) => {
 
         <div className='formGroup'>
           <label htmlFor='genre '>Genre</label>
-          {/* <Field type='text' id='genre' name='genre' />
-          <ErrorMessage name='genre' /> */}
           <Field name='genre'>
             {(props) => {
               const { field, form, meta } = props;

@@ -14,7 +14,7 @@ const SearchPage = () => {
 
   return (
     <div className='Search-container'>
-      <h3>Generate Playlist:</h3>
+      {/* <h3>Generate Playlist:</h3> */}
       {/* <InputForm callback={clickHandler} /> */}
       <NewInputForm />
     </div>

@@ -24,7 +24,7 @@ function FormikContainer() {
           <FormikControl control='input' type='text' label='City' name='city' />
           <FormikControl control='date' label='Pick a Date' name='date' />
 
-          <button type='submit'>Submit</button>
+          <button type='submit'>Generate Playlist</button>
         </Form>
       )}
     </Formik>

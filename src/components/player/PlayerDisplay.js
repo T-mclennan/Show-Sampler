@@ -9,6 +9,7 @@ function PlayerDisplay({ event_data }) {
   // const data = useSelector((state) => state.current_event_data);
 
   const image = event_data.images ? event_data.images[8] : 'nada';
+  console.log('Player Display');
   // const source = event_data.images[5];
   // console.log(source);
   return (

@@ -30,29 +30,17 @@ button {
   border-radius: 1rem;
 }
 
-/* .form-control {
-  margin-bottom: 20px;
-} */
-
 .formGroup {
   margin-bottom: 1rem;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 .error {
   color: red;
 }
-
-/* .react-datepicker {
-  height: 500px;
-  width: 400px;
-}
-
-.react-datepicker__month-container {
-  height: 500px;
-  width: 400px;
-} */
-
-/* .react-datepicker__day {
-  padding: 2px;
-  margin: 1px;
-} */

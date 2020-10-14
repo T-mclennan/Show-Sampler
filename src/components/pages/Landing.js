@@ -8,6 +8,8 @@ const Landing = () => {
     window.location = 'http://localhost:8888/login';
   };
 
+  console.log('Landing');
+
   return (
     <div className='Home'>
       <div className='lander'>

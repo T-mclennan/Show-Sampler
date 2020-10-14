@@ -14,6 +14,7 @@ export default function PlayerContainer() {
   ]);
 
   const dispatch = useDispatch();
+  console.log('Player Container');
 
   useLayoutEffect(() => {
     const fetchAPI = async () => {

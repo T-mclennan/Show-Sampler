@@ -7,6 +7,7 @@ import './player.css';
 import PropTypes from 'prop-types';
 
 function Player({ authToken, uriList, eventData }) {
+  console.log('Spotify Player');
   return (
     <div className='player-container'>
       <EventNav />

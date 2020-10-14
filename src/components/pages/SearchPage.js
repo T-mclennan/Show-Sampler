@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import InputForm from '../../components/input/InputForm';
-import NewInputForm from '../input/NewInputForm';
+import InputForm from '../input/InputForm';
 import './SearchPage.css';
 
 const SearchPage = () => {
@@ -15,8 +14,8 @@ const SearchPage = () => {
   return (
     <div className='Search-container'>
       {/* <h3>Generate Playlist:</h3> */}
-      {/* <InputForm callback={clickHandler} /> */}
-      <NewInputForm />
+      {/* <OldInputForm callback={clickHandler} /> */}
+      <InputForm callback={clickHandler} />
     </div>
   );
 };

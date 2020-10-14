@@ -4,6 +4,7 @@ import { Navbar } from 'react-bootstrap';
 import './Navbar.css';
 
 export default function NavbarCustom() {
+  console.log('navbar');
   return (
     <Navbar className='navbar' fluid collapseOnSelect>
       <Navbar.Header>

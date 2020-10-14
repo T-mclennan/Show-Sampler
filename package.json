@@ -9,6 +9,7 @@
     "axios": "^0.20.0",
     "formik": "^2.2.0",
     "p-map": "^4.0.0",
+    "rc-collapse": "^2.0.1",
     "react": "^16.13.1",
     "react-bootstrap": "^0.33.1",
     "react-datepicker": "^3.2.2",

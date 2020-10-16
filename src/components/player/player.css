@@ -1,5 +1,5 @@
 .player-header {
-  font-size: 4rem;
+  font-size: 2rem;
   color: whitesmoke;
 }
 
@@ -25,11 +25,11 @@
 }
 
 .btn {
-  height: 4rem;
-  width: 10rem;
+  height: 2rem;
+  width: 5rem;
   background-color: rgb(25, 99, 104);
   /* border: 1px whitesmoke; */
-  border-radius: 1.5rem;
+  border-radius: 0.5rem;
   color: whitesmoke;
 }
 

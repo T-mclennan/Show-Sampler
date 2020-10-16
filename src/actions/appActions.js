@@ -17,3 +17,11 @@ export const isLoadingEvents = () => {
     type: 'IS_LOADING_EVENTS',
   };
 };
+
+export const login = () => {
+  //TODO: Use window.location.pathname to get a redirect endpoint. Send that to
+};
+
+export const refreashToken = () => {
+  //Get request
+};

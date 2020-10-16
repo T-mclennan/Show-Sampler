@@ -30,7 +30,7 @@ function PlayerDisplay({ event_data }) {
 }
 
 const imageStyle = {
-  width: '50rem',
+  width: '20rem',
 };
 
 PlayerDisplay.propTypes = {};

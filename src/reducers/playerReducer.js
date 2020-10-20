@@ -13,6 +13,7 @@ const initialState = {
   display: 'event',
   artist: {},
   event_count: 0,
+  is_loading: false,
 };
 
 const playerReducer = (state = initialState, action) => {

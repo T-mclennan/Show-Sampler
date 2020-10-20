@@ -1,11 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import { login, refreashToken } from '../../actions/appActions';
 import './Landing.css';
 
 const Landing = () => {
+  const dispatch = useDispatch();
+
   const clickHandler = () => {
     window.location = 'http://localhost:8888/login';
+    // dispatch(refreashToken());
+    // window.location = 'http://localhost:8888/login';
   };
 
   console.log('Landing');

@@ -5,8 +5,6 @@ import FormikControl from './FormikControl';
 import CollapsableCheckbox from './CollabsableCheckbox';
 
 function FormikContainer({ callback, savedValues }) {
-  console.log('Saved Values: ');
-  console.log(savedValues);
   const checkboxOptions = [
     // { key: 'select an option', value: '' },
     { key: 'All Genres', value: 'coption 1' },
@@ -48,7 +46,12 @@ function FormikContainer({ callback, savedValues }) {
           <FormikControl control='input' type='text' label='City' name='city' />
           <FormikControl control='date' label='Pick a Date' name='date' />
           <CollapsableCheckbox label={'Genre'} options={checkboxOptions} />
-          <button type='submit'>Generate Playlist</button>
+          <button
+            type='submit'
+            // disabled={formik.isSubmitting}
+          >
+            Generate Playlist
+          </button>
         </Form>
       )}
     </Formik>

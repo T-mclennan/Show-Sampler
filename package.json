@@ -19,6 +19,7 @@
     "react-scripts": "^3.4.3",
     "react-spotify-web-playback": "^0.7.0",
     "redux": "^4.0.0-rc.1",
+    "redux-thunk": "^2.3.0",
     "yup": "^0.29.3"
   },
   "scripts": {

@@ -1,8 +1,6 @@
 import axios from 'axios';
 
 export const addToken = (data) => {
-  console.log('add token: ');
-  console.log(data);
   return {
     type: 'ADD_TOKEN',
     payload: data,
@@ -13,8 +11,12 @@ export const refreashToken = () => (dispatch) => {
   console.log('refresh token');
   axios
     .get('http://localhost:8888/refresh', { withCredentials: true })
-    .then((auth) => {
-      dispatch(addToken(auth));
+    .then((res) => {
+      if (res.status == 200) {
+        const auth_token = res.data;
+        console.log(auth_token);
+        dispatch(addToken(auth_token));
+      }
     })
     .catch((e) => console.log('Error: ', e));
 };

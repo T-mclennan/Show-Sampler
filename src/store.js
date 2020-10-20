@@ -36,8 +36,6 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  console.log('store: ');
-  console.log(store);
   saveState({
     appReducer: store.getState().appReducer,
   });

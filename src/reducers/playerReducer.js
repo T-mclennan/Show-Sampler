@@ -9,9 +9,8 @@ const initialState = {
   event_index: 0,
   current_event_data: null,
   total_event_data: null,
+  current_content: null,
   playlist: 'spotify:artist:6M2wZ9GZgrQXHCFfjv46we',
-  display: 'event',
-  artist: {},
   event_count: 0,
   is_loading: false,
 };

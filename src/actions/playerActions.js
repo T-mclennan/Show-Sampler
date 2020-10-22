@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { artistsToPlayist, fetchShows } from '../api/';
+
 export const setCurrentEvent = (data) => {
   return {
     type: 'SET_CURRENT_EVENT',
@@ -28,6 +31,16 @@ export const initializeEventData = (data) => {
   };
 };
 
-//TODO:
-//LOADING
-//ERROR
+export const isLoading = () => {
+  console.log('set as loading.');
+  return {
+    type: 'SET_AS_LOADING',
+  };
+};
+
+export const isFinishedLoading = () => {
+  console.log('set as not loading.');
+  return {
+    type: 'SET_AS_NOT_LOADING',
+  };
+};

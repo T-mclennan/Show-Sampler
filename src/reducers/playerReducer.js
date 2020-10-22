@@ -38,7 +38,10 @@ const playerReducer = (state = initialState, action) => {
       return { ...state, total_event_data: action.payload };
     case 'SET_PLAYLIST':
       return { ...state, playlist: action.payload };
-
+    case 'SET_AS_LOADING':
+      return { ...state, is_loading: true };
+    case 'SET_AS_NOT_LOADING':
+      return { ...state, is_loading: false };
     case 'INITIALIZE_EVENT_DATA':
       return {
         ...state,

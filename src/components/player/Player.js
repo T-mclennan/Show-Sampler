@@ -2,12 +2,23 @@ import React from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import EventNav from './EventNav';
 import PlayerDisplay from './PlayerDisplay';
+import { useDispatch, useSelector } from 'react-redux';
 import './player.css';
 
 import PropTypes from 'prop-types';
+import { refreashToken } from '../../actions/appActions';
 
-function Player({ authToken, uriList, eventData }) {
+const Player = ({ authToken, uriList, eventData }) => {
+  const dispatch = useDispatch();
+
   console.log('Spotify Player');
+
+  const checkTokenExpiration = () => {
+    // Check current time against expiration time
+  };
+
+  const isTimePassed = () => {};
+
   return (
     <div className='player-container'>
       <EventNav />
@@ -17,10 +28,15 @@ function Player({ authToken, uriList, eventData }) {
         uris={uriList}
         autoPlay={true}
         styles={playerStyle}
+        callback={(state) => {
+          console.log('Player:');
+          console.log(state);
+          console.log(state.status);
+        }}
       />
     </div>
   );
-}
+};
 
 const playerStyle = {
   bgColor: '#444',

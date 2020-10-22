@@ -28,8 +28,8 @@ const SearchPage = () => {
   const clickHandler = (values) => {
     //TODO: Error handling for bad ticketmaster request:
     localStorage.setItem('formData', JSON.stringify(values));
-    dispatch(refreashToken());
-    // history.push('/playback');
+    // dispatch(refreashToken());
+    history.push('/playback');
   };
 
   return (

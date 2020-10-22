@@ -7,7 +7,7 @@ import Player from './Player';
 export default function PlayerContainer() {
   const [eventData, setEventData] = useState({});
   const index = useSelector((state) => state.playerReducer.event_index);
-  const authToken = useSelector((state) => state.appReducer.auth_token);
+  const { token } = useSelector((state) => state.appReducer.auth_token);
 
   const [uriList, setUriList] = useState([
     'spotify:artist:6M2wZ9GZgrQXHCFfjv46we',
@@ -29,12 +29,10 @@ export default function PlayerContainer() {
   }, [index, dispatch]);
 
   const setCurrentPlaylist = async (artist_list) => {
-    const playlist = await artistsToPlayist(artist_list, authToken);
+    const playlist = await artistsToPlayist(artist_list, token);
     dispatch(setPlaylist(playlist));
     setUriList(playlist);
   };
 
-  return (
-    <Player authToken={authToken} uriList={uriList} eventData={eventData} />
-  );
+  return <Player authToken={token} uriList={uriList} eventData={eventData} />;
 }

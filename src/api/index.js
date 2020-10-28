@@ -4,14 +4,15 @@ import keys from '../config/keys';
 export const fetchShows = async (city) => {
   try {
     console.log('Fetching: ', city);
-    const event_list = await axios.get(keys.URL + `events`, {
+    const { data } = await axios.get(keys.URL + `events`, {
       params: {
         city: city,
       },
     });
-    return event_list;
+    return data;
   } catch (error) {
     console.log(error);
+    return { error };
   }
 };
 

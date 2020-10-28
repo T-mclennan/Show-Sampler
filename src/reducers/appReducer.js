@@ -16,9 +16,6 @@ const appReducer = (state = initialState, action) => {
       const auth = action.payload;
       return { ...state, auth_token: auth };
 
-    case 'SET_SHOW_DATA':
-      return { ...state, show_data: action.payload };
-
     default:
       return state;
   }

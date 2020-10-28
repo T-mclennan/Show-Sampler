@@ -21,8 +21,6 @@ const getState = () => {
 };
 
 const initialState = getState();
-console.log('initialState');
-console.log(initialState);
 
 const store = createStore(
   rootReducer,

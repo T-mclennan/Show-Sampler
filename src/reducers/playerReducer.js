@@ -10,7 +10,7 @@ const initialState = {
   current_event_data: null,
   total_event_data: null,
   current_content: null,
-  playlist: 'spotify:artist:6M2wZ9GZgrQXHCFfjv46we',
+  // current_playlist: 'spotify:artist:6M2wZ9GZgrQXHCFfjv46we',
   event_count: 0,
   is_loading: false,
 };

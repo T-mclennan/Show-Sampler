@@ -3,16 +3,21 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import InputForm from '../input/InputForm';
 import parseISO from 'date-fns/parseISO';
-import { addToken, refreashToken } from '../../actions/appActions';
+import { addToken } from '../../actions/appActions';
+import { initializeEventData } from '../../actions/playerActions';
+import { fetchShows } from '../../api';
 import './SearchPage.css';
 
 const SearchPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const params = new URLSearchParams(document.location.search.substring(1));
   const auth = params.get('access_token');
-  if (auth) {
-    dispatch(addToken(auth));
+  const expiration = params.get('expiration');
+  if (auth && expiration) {
+    dispatch(addToken({ token: auth, expiration }));
+    history.replace('/search');
   }
 
   //Input of date-picker is Date(), output is String.
@@ -23,20 +28,26 @@ const SearchPage = () => {
     formData.date[1] = parseISO(formData.date[1]);
   }
 
-  const history = useHistory();
-
-  const clickHandler = (values) => {
-    //TODO: Error handling for bad ticketmaster request:
+  const clickHandler = async (values) => {
+    // TODO: Error handling for bad ticketmaster request:
+    const { city } = values;
     localStorage.setItem('formData', JSON.stringify(values));
-    // dispatch(refreashToken());
-    history.push('/playback');
+    const data = await fetchShows(city);
+    if (data.error) {
+      //dispatch error
+      console.log(data.error);
+    } else {
+      console.log('show data');
+      console.log(data);
+      dispatch(initializeEventData(data));
+      history.push('/playback');
+    }
   };
 
   return (
     <div className='Search-container'>
-      {/* <h3>Generate Playlist:</h3> */}
-      {/* <OldInputForm callback={clickHandler} /> */}
       <InputForm callback={clickHandler} savedValues={formData} />
+      {/* Error display */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import EventNav from './EventNav';
 import PlayerDisplay from './PlayerDisplay';
@@ -10,29 +10,39 @@ import { refreashToken } from '../../actions/appActions';
 
 const Player = ({ authToken, uriList, eventData }) => {
   const dispatch = useDispatch();
+  const { token, expiration } = authToken;
 
-  console.log('Spotify Player');
+  useLayoutEffect(() => {
+    console.log('player useEffect');
+    checkTokenExpiration();
+  }, []);
 
   const checkTokenExpiration = () => {
-    // Check current time against expiration time
+    if (isRefreshNeeded(expiration)) {
+      console.log('Refresh needed. Refreshing tokens.');
+      dispatch(refreashToken());
+    } else {
+      console.log('expiration - current:');
+      console.log(expiration - Date.now());
+      console.log((expiration - Date.now()) / 60000);
+    }
   };
 
-  const isTimePassed = () => {};
+  //Refresh needed if <20 mins left in token:
+  const isRefreshNeeded = (expiration) => {
+    return expiration - Date.now() < 20 * 60 * 1000;
+  };
 
   return (
     <div className='player-container'>
       <EventNav />
       <PlayerDisplay event_data={eventData} />
       <SpotifyPlayer
-        token={authToken}
+        token={token}
         uris={uriList}
         autoPlay={true}
         styles={playerStyle}
-        callback={(state) => {
-          console.log('Player:');
-          console.log(state);
-          console.log(state.status);
-        }}
+        callback={checkTokenExpiration}
       />
     </div>
   );

@@ -33,7 +33,7 @@ const Player = ({ authToken, uriList, eventData }) => {
 
   return (
     <div className='player-container'>
-      <EventNav />
+      <EventNav event_data={eventData} />
       <PlayerDisplay event_data={eventData} />
       <SpotifyPlayer
         token={token}

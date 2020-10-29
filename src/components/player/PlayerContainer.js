@@ -19,20 +19,21 @@ export default function PlayerContainer() {
     // 'spotify:artist:6M2wZ9GZgrQXHCFfjv46we',
   ]);
 
-  const [playlist, setPlaylist] = useState([]);
+  // const [playlist, setPlaylist] = useState([]);
 
   // let initialCache = new Array(eventCount).fill(null);
   const [playlistCache, setPlaylistCache] = useState(
     new Array(eventCount).fill(null)
   );
 
+  console.log('playlist cache');
+  console.log(playlistCache);
+
   const dispatch = useDispatch();
 
   useLayoutEffect(() => {
     // If playlist at index is in cache, set as playlist.
     // Else fetch playlist, add to cache, set as playlist.
-    console.log('INDEX');
-    console.log(index);
     const { artist_list } = eventData;
     const generatePlaylist = async (artist_list) => {
       if (playlistCache[index]) {
@@ -40,7 +41,9 @@ export default function PlayerContainer() {
       } else {
         const playlist = await artistsToPlayist(artist_list, token);
         setUriList(playlist);
-        setPlaylistCache(playlist);
+        const newCache = playlistCache;
+        newCache[index] = playlist;
+        setPlaylistCache(newCache);
       }
     };
 

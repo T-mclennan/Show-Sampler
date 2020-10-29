@@ -1,49 +1,51 @@
-import React, { useLayoutEffect, useState, useEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { artistsToPlayist, fetchShows } from '../../api/';
-import { setPlaylist, initializeEventData } from '../../actions/playerActions';
+import { artistsToPlayist } from '../../api/';
 import Player from './Player';
 
 export default function PlayerContainer() {
+  console.log('player container');
   const index = useSelector((state) => state.playerReducer.event_index);
   const auth = useSelector((state) => state.appReducer.auth_token);
   const eventCount = useSelector((state) => state.playerReducer.event_count);
   const eventData = useSelector(
     (state) => state.playerReducer.total_event_data[index]
   );
+
+  // console.log(eventData.artist_list);
   const { token } = auth;
 
   const [uriList, setUriList] = useState([
-    'spotify:artist:6M2wZ9GZgrQXHCFfjv46we',
+    // 'spotify:artist:6M2wZ9GZgrQXHCFfjv46we',
   ]);
+
   const [playlist, setPlaylist] = useState([]);
-  let initialCache = new Array(eventCount).fill(null);
-  console.log(initialCache);
-  const [playlistCache, setPlaylistCache] = useState(initialCache);
+
+  // let initialCache = new Array(eventCount).fill(null);
+  const [playlistCache, setPlaylistCache] = useState(
+    new Array(eventCount).fill(null)
+  );
 
   const dispatch = useDispatch();
 
-  // useLayoutEffect(() => {
-  //If playlist at index is in cache, set as playlist.
-  // Else fetch playlist, add to cache, set as playlist.
+  useLayoutEffect(() => {
+    // If playlist at index is in cache, set as playlist.
+    // Else fetch playlist, add to cache, set as playlist.
+    console.log('INDEX');
+    console.log(index);
+    const { artist_list } = eventData;
+    const generatePlaylist = async (artist_list) => {
+      if (playlistCache[index]) {
+        setUriList(playlistCache[index]);
+      } else {
+        const playlist = await artistsToPlayist(artist_list, token);
+        setUriList(playlist);
+        setPlaylistCache(playlist);
+      }
+    };
 
-  // const setCurrentPlaylist = async (artist_list) => {
-  //   const playlist = await artistsToPlayist(artist_list, token);
-  //   dispatch(setPlaylist(playlist));
-  //   setUriList(playlist);
-  // };
-
-  // setCurrentPlaylist(data[index].artist_list);
-  //   };
-
-  //   fetchAPI();
-  // }, [index, dispatch]);
-
-  // const setCurrentPlaylist = async (artist_list) => {
-  //   const playlist = await artistsToPlayist(artist_list, token);
-  //   dispatch(setPlaylist(playlist));
-  //   setUriList(playlist);
-  // };
+    generatePlaylist(artist_list);
+  }, [index]);
 
   return <Player authToken={auth} uriList={uriList} eventData={eventData} />;
 }

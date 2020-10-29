@@ -2,11 +2,11 @@ import React, { useLayoutEffect } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import EventNav from './EventNav';
 import PlayerDisplay from './PlayerDisplay';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './player.css';
 
 import PropTypes from 'prop-types';
-import { refreashToken } from '../../actions/appActions';
+import { redirectToLogin, refreashToken } from '../../actions/appActions';
 
 const Player = ({ authToken, uriList, eventData }) => {
   const dispatch = useDispatch();
@@ -22,8 +22,6 @@ const Player = ({ authToken, uriList, eventData }) => {
       console.log('Refresh needed. Refreshing tokens.');
       dispatch(refreashToken());
     } else {
-      console.log('expiration - current:');
-      console.log(expiration - Date.now());
       console.log((expiration - Date.now()) / 60000);
     }
   };
@@ -42,7 +40,14 @@ const Player = ({ authToken, uriList, eventData }) => {
         uris={uriList}
         autoPlay={true}
         styles={playerStyle}
-        callback={checkTokenExpiration}
+        callback={(state) => {
+          console.log(state);
+          checkTokenExpiration();
+          if (state.status === 'ERROR') {
+            console.log('Error state reached');
+            dispatch(redirectToLogin());
+          }
+        }}
       />
     </div>
   );

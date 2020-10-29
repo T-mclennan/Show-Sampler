@@ -1,16 +1,7 @@
-// Player Reducer will hold playback related data such as:
-// Current event data
-// Current track playing
-// Current artist data, etc.
-
-// Display of player will show info on event or artist, with playlist.
-
 const initialState = {
   event_index: 0,
   current_event_data: null,
   total_event_data: null,
-  current_content: null,
-  // current_playlist: 'spotify:artist:6M2wZ9GZgrQXHCFfjv46we',
   event_count: 0,
   is_loading: false,
 };
@@ -46,9 +37,14 @@ const playerReducer = (state = initialState, action) => {
       return {
         ...state,
         total_event_data: action.payload,
-        current_event_data: action.payload[event_index],
+        current_event_data: action.payload[0],
+        event_index: 0,
         event_count: action.payload.length,
       };
+
+    case 'CLEAR_PLAYER_DATA':
+      return initialState;
+
     default:
       return state;
   }

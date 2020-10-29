@@ -47,6 +47,7 @@ function FormikContainer({ callback, savedValues }) {
           <FormikControl control='date' label='Pick a Date' name='date' />
           <CollapsableCheckbox label={'Genre'} options={checkboxOptions} />
           <button
+            className='form-button'
             type='submit'
             // disabled={formik.isSubmitting}
           >

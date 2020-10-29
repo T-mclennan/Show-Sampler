@@ -8,13 +8,6 @@ export const setCurrentEvent = (data) => {
   };
 };
 
-export const setTotalEventData = (data) => {
-  return {
-    type: 'SET_TOTAL_EVENT_DATA',
-    payload: data,
-  };
-};
-
 export const setPlaylist = (data) => {
   return {
     type: 'SET_PLAYLIST',
@@ -28,6 +21,12 @@ export const initializeEventData = (data) => {
   return {
     type: 'INITIALIZE_EVENT_DATA',
     payload: data,
+  };
+};
+
+export const clearPlayerData = () => {
+  return {
+    type: 'CLEAR_PLAYER_DATA',
   };
 };
 

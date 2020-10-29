@@ -24,7 +24,7 @@ textarea {
   border-radius: 4px;
   /* margin-bottom: 20px; */
 }
-button {
+.form-button {
   padding: 0.5rem;
   width: 15rem;
   border-radius: 1rem;
@@ -39,6 +39,11 @@ button {
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 1rem;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  display: block;
 }
 
 .error {

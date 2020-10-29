@@ -36,6 +36,7 @@ const store = createStore(
 store.subscribe(() => {
   saveState({
     appReducer: store.getState().appReducer,
+    playerReducer: store.getState().playerReducer,
   });
 });
 

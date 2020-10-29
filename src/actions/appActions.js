@@ -1,10 +1,26 @@
 import axios from 'axios';
+import { clearPlayerData } from './playerActions';
+
+export const redirectToLogin = () => {
+  window.location = 'http://localhost:8888/login';
+};
 
 export const addToken = (data) => {
   return {
     type: 'ADD_TOKEN',
     payload: data,
   };
+};
+
+export const clearAppData = () => {
+  return {
+    type: 'CLEAR_APP_DATA',
+  };
+};
+
+export const clearData = () => (dispatch) => {
+  dispatch(clearAppData);
+  dispatch(clearPlayerData);
 };
 
 export const refreashToken = () => (dispatch) => {

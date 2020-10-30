@@ -42,6 +42,9 @@ const Player = ({ authToken, uriList, eventData }) => {
         callback={(state) => {
           // console.log(state);
           checkTokenExpiration();
+          if (state.devices.length < 1) {
+            dispatch(refreashToken());
+          }
           if (state.status === 'ERROR') {
             console.log('Error state reached');
             dispatch(redirectToLogin());

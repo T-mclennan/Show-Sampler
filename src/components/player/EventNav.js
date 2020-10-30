@@ -8,9 +8,6 @@ import './player.css';
 
 const EventNav = ({ eventData }) => {
   const dispatch = useDispatch();
-  // const event_data = useSelector(
-  //   (state) => state.playerReducer.current_event_data
-  // );
 
   const incrementIndex = useCallback(
     () => dispatch({ type: 'INCREMENT_EVENT' }),
@@ -24,13 +21,13 @@ const EventNav = ({ eventData }) => {
 
   return (
     <div className='event-nav'>
-      <Button className='nav-btn' onClick={decrementIndex}>
+      <button className='nav-btn' onClick={decrementIndex}>
         Back
-      </Button>
+      </button>
       <h2>{eventData ? eventData.event_name : ''}</h2>
-      <Button className='nav-btn' onClick={incrementIndex}>
+      <button className='nav-btn' onClick={incrementIndex}>
         Forward
-      </Button>
+      </button>
     </div>
   );
 };

@@ -1,43 +1,40 @@
 import axios from 'axios';
 import keys from '../config/keys';
 
-export const fetchShows = async (city) => {
+export const fetchShows = async (city, token) => {
   try {
-    console.log('Fetching: ', city);
+    console.log('Fetching: ', city, ' auth ', token);
     const { data } = await axios.get(keys.URL + `events`, {
       params: {
         city: city,
       },
     });
-    return data;
+    console.log(data);
+    const filtered = await generatePlaylists(data, token);
+    console.log(filtered);
+    return filtered;
   } catch (error) {
     console.log(error);
     return { error };
   }
 };
 
-export const fetchPlaylist = async (accessToken, refreshToken) => {
-  //   axios.get('https://api.spotify.com/v1/me', {
-  //         headers: { Authorization: 'Bearer ' + accessToken },
-  //       }).then(response => {
-  //   if (response.status === 401) {
-  //     // try getting the new access token and repeat the same request
-  //   }
-  //   // otherwise carry on
-  // }).catch(error) {
-  //   console.error('Error: ', error)
-  // }
+// For each event returned by ticketmaster, generate a playlist and add it to event object.
+// If spotify fails to generate playlist, exclude event from list.
+const generatePlaylists = async (eventData, token) => {
+  const promises = eventData.map(async (event) => {
+    const playlist = await artistsToPlayist(event.artist_list, token);
+    return { ...event, playlist: playlist };
+  });
 
-  try {
-    const { data } = await axios.get('https://api.spotify.com/v1/me', {
-      headers: { Authorization: 'Bearer ' + accessToken },
-    });
-
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return await Promise.all(promises)
+    .then((responses) => {
+      const filtered = responses.filter((event) => {
+        return event.playlist.length > 0;
+      });
+      return filtered;
+    })
+    .catch((e) => console.log(e));
 };
 
 export const searchArtist = async (artist, accessToken) => {

@@ -13,7 +13,6 @@ const Player = ({ authToken, uriList, eventData }) => {
   const { token, expiration } = authToken;
 
   useLayoutEffect(() => {
-    console.log('player useEffect');
     checkTokenExpiration();
   }, []);
 
@@ -33,15 +32,15 @@ const Player = ({ authToken, uriList, eventData }) => {
 
   return (
     <div className='player-container'>
-      <EventNav event_data={eventData} />
-      <PlayerDisplay event_data={eventData} />
+      <EventNav eventData={eventData} />
+      <PlayerDisplay eventData={eventData} />
       <SpotifyPlayer
         token={token}
         uris={uriList}
         autoPlay={true}
         styles={playerStyle}
         callback={(state) => {
-          console.log(state);
+          // console.log(state);
           checkTokenExpiration();
           if (state.status === 'ERROR') {
             console.log('Error state reached');

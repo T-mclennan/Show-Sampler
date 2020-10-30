@@ -24,9 +24,9 @@
   padding: 1em 2em;
 }
 
-.btn {
-  height: 1rem;
-  width: 2rem;
+.nav-btn {
+  height: 2rem;
+  width: 5rem;
   background-color: rgb(25, 99, 104);
   /* border: 1px whitesmoke; */
   border-radius: 0.5rem;
@@ -42,4 +42,13 @@
   color: whitesmoke;
   height: 100%;
   width: 100%;
+}
+
+button:active {
+  outline: none;
+  border: none;
+}
+
+button:focus {
+  outline: 0;
 }

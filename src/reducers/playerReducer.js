@@ -1,6 +1,6 @@
 const initialState = {
   event_index: 0,
-  current_event_data: null,
+  // current_event_data: null,
   total_event_data: null,
   event_count: 0,
   is_loading: false,
@@ -23,8 +23,8 @@ const playerReducer = (state = initialState, action) => {
         ...state,
         event_index: d,
       };
-    case 'SET_CURRENT_EVENT':
-      return { ...state, current_event_data: action.payload };
+    // case 'SET_CURRENT_EVENT':
+    //   return { ...state, current_event_data: action.payload };
     case 'SET_TOTAL_EVENT_DATA':
       return { ...state, total_event_data: action.payload };
     case 'SET_PLAYLIST':
@@ -37,7 +37,7 @@ const playerReducer = (state = initialState, action) => {
       return {
         ...state,
         total_event_data: action.payload,
-        current_event_data: action.payload[0],
+        // current_event_data: action.payload[0],
         event_index: 0,
         event_count: action.payload.length,
       };

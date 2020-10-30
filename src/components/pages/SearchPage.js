@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import InputForm from '../input/InputForm';
 import parseISO from 'date-fns/parseISO';
@@ -19,6 +19,7 @@ const SearchPage = () => {
     dispatch(addToken({ token: auth, expiration }));
     history.replace('/search');
   }
+  const { token } = useSelector((state) => state.appReducer.auth_token);
 
   //Input of date-picker is Date(), output is String.
   //If we want to re-populate form with past data, we need to parse it.
@@ -32,13 +33,11 @@ const SearchPage = () => {
     // TODO: Error handling for bad ticketmaster request:
     const { city } = values;
     localStorage.setItem('formData', JSON.stringify(values));
-    const data = await fetchShows(city);
+    const data = await fetchShows(city, token);
     if (data.error) {
       //dispatch error
       console.log(data.error);
     } else {
-      console.log('show data');
-      console.log(data);
       dispatch(initializeEventData(data));
       history.push('/playback');
     }

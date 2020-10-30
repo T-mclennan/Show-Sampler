@@ -5,19 +5,17 @@ import { Row, Col, Image } from 'react-bootstrap';
 import './player.css';
 import PropTypes from 'prop-types';
 
-function PlayerDisplay({ event_data }) {
+function PlayerDisplay({ eventData }) {
   // const data = useSelector((state) => state.current_event_data);
 
-  const image = event_data.images ? event_data.images[8] : 'nada';
-  console.log('Player Display');
-  // const source = event_data.images[5];
-  // console.log(source);
+  const image = eventData.images ? eventData.images[8] : 'nada';
+
   return (
     <div className='player-display'>
       {/* <Container> */}
       <Row>
         <Col xs={6} md={4}>
-          {event_data.images ? (
+          {eventData.images ? (
             <Image style={imageStyle} src={image} fluid='true' />
           ) : (
             ''

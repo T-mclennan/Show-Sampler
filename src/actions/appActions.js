@@ -37,4 +37,16 @@ export const refreashToken = () => (dispatch) => {
     .catch((e) => console.log('Error: ', e));
 };
 
+export const setAsLoading = () => {
+  return {
+    type: 'SET_AS_LOADING',
+  };
+};
+
+export const finishedLoading = () => {
+  return {
+    type: 'FINISHED_LOADING',
+  };
+};
+
 export const toggleDarkMode = () => {};

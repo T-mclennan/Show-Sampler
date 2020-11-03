@@ -19,11 +19,14 @@ const appReducer = (state = initialState, action) => {
       const auth = action.payload;
       return { ...state, auth_token: auth };
 
-    case 'SET_SHOW_DATA':
-      return { ...state, show_data: action.payload };
-
     case 'CLEAR_APP_DATA':
       return initialState;
+
+    case 'SET_AS_LOADING':
+      return { ...state, is_loading: true };
+
+    case 'FINISHED_LOADING':
+      return { ...state, is_loading: false };
 
     default:
       return state;

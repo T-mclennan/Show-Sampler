@@ -3,9 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import InputForm from '../input/InputForm';
 import parseISO from 'date-fns/parseISO';
-import { addToken } from '../../actions/appActions';
+import {
+  setAsLoading,
+  finishedLoading,
+  addToken,
+} from '../../actions/appActions';
 import { initializeEventData } from '../../actions/playerActions';
 import { fetchShows } from '../../api';
+import LoadingPage from './LoadingPage';
 import './SearchPage.css';
 
 const SearchPage = () => {
@@ -20,6 +25,7 @@ const SearchPage = () => {
     history.replace('/search');
   }
   const { token } = useSelector((state) => state.appReducer.auth_token);
+  const isLoading = useSelector((state) => state.appReducer.is_loading);
 
   //Input of date-picker is Date(), output is String.
   //If we want to re-populate form with past data, we need to parse it.
@@ -32,8 +38,10 @@ const SearchPage = () => {
   const clickHandler = async (values) => {
     // TODO: Error handling for bad ticketmaster request:
     const { city } = values;
+    dispatch(setAsLoading());
     localStorage.setItem('formData', JSON.stringify(values));
     const data = await fetchShows(city, token);
+    dispatch(finishedLoading());
     if (data.error) {
       //dispatch error
       console.log(data.error);
@@ -45,7 +53,10 @@ const SearchPage = () => {
 
   return (
     <div className='Search-container'>
-      <InputForm callback={clickHandler} savedValues={formData} />
+      {!isLoading && (
+        <InputForm callback={clickHandler} savedValues={formData} />
+      )}
+      {isLoading && <LoadingPage />}
       {/* Error display */}
     </div>
   );

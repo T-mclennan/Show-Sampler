@@ -9,7 +9,6 @@ export const fetchShows = async (city, token) => {
         city: city,
       },
     });
-    console.log(data);
     const filtered = await generatePlaylists(data, token);
     console.log(filtered);
     return filtered;

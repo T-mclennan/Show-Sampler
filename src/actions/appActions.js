@@ -28,10 +28,14 @@ export const refreashToken = () => (dispatch) => {
   axios
     .get('http://localhost:8888/refresh', { withCredentials: true })
     .then((res) => {
+      console.log('REFRESH RESPONSE: ');
+      console.log(res);
       if (res.status === 200) {
         const auth_token = res.data;
         console.log(auth_token);
         dispatch(addToken(auth_token));
+      } else {
+        console.log('Refresh failed: res.status: ', res.status);
       }
     })
     .catch((e) => console.log('Error: ', e));

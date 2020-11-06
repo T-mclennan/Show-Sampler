@@ -1,52 +1,83 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect } from 'react';
+import SpotifyPlayer from 'react-spotify-web-playback';
+import EventNav from './EventNav';
+import PlayerDisplay from './PlayerDisplay';
 import { useDispatch, useSelector } from 'react-redux';
-import Player from './Player';
+import './player.css';
 
-export default function PlayerContainer() {
+import PropTypes from 'prop-types';
+import { redirectToLogin, refreashToken } from '../../actions/appActions';
+
+const PlayerContainer = () => {
+  const dispatch = useDispatch();
+
   const index = useSelector((state) => state.playerReducer.event_index);
-  const auth = useSelector((state) => state.appReducer.auth_token);
+  const authToken = useSelector((state) => state.appReducer.auth_token);
+  const { token, expiration } = authToken;
   const eventData = useSelector(
     (state) => state.playerReducer.total_event_data[index]
   );
+  const uriList = eventData.playlist;
 
-  // const [uriList, setUriList] = useState([
-  // ]);
+  console.log('URI LIST: ');
+  console.log(eventData);
+  console.log(uriList);
 
-  // const [playlistCache, setPlaylistCache] = useState(
-  //   new Array(eventCount).fill(null)
-  // );
+  useLayoutEffect(() => {
+    checkTokenExpiration();
+  }, []);
 
-  // const dispatch = useDispatch();
+  const checkTokenExpiration = () => {
+    if (isRefreshNeeded(expiration)) {
+      console.log('Refresh needed. Refreshing tokens.');
+      dispatch(refreashToken());
+    } else {
+      console.log((expiration - Date.now()) / 60000);
+    }
+  };
 
-  // useLayoutEffect(() => {
-  //   // If playlist at index is in cache, set as playlist.
-  //   // Else fetch playlist, add to cache, set as playlist.
+  //Refresh needed if <20 mins left in token:
+  const isRefreshNeeded = (expiration) => {
+    return expiration - Date.now() < 20 * 60 * 1000;
+  };
 
-  //   const { artist_list } = eventData;
-  //   const generatePlaylist = async (artist_list) => {
-  //     if (playlistCache[index]) {
-  //       setUriList(playlistCache[index]);
-  //     } else {
-  //       const playlist = await artistsToPlayist(artist_list, token);
-  //       if (playlist) {
-  //         setUriList(playlist);
-  //         const newCache = playlistCache;
-  //         newCache[index] = playlist;
-  //         setPlaylistCache(newCache);
-  //       } else {
-  //         console.log('playlist not found');
-  //       }
-  //     }
-  //   };
-
-  //   generatePlaylist(artist_list);
-  // }, [index]);
-
-  return (
-    <Player
-      authToken={auth}
-      uriList={eventData.playlist}
-      eventData={eventData}
-    />
+  return token ? (
+    <div className='player-container'>
+      <EventNav eventData={eventData} />
+      <PlayerDisplay eventData={eventData} />
+      <SpotifyPlayer
+        token={token}
+        uris={uriList}
+        autoPlay={true}
+        styles={playerStyle}
+        callback={(state) => {
+          console.log(state);
+          checkTokenExpiration();
+          if (state.devices.length < 1) {
+            dispatch(refreashToken());
+          }
+          if (state.status === 'ERROR') {
+            console.log('Error state reached');
+            dispatch(redirectToLogin());
+          }
+        }}
+      />
+    </div>
+  ) : (
+    ''
   );
-}
+};
+
+const playerStyle = {
+  bgColor: '#444',
+  color: '#fff',
+  loaderColor: '#fff',
+  sliderColor: '#1cb954',
+  savedColor: '#fff',
+  trackArtistColor: '#ccc',
+  trackNameColor: '#fff',
+};
+
+PlayerContainer.propTypes = {};
+
+export default PlayerContainer;

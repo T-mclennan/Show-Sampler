@@ -15,7 +15,7 @@ function LoadingPage() {
       <h3 style={{ margin: '3rem', color: 'teal' }}>Gathering show data...</h3>
       <PacmanLoader
         css={override}
-        size={100}
+        size={80}
         margin={20}
         color={'teal'}
         loading={true}

@@ -19,10 +19,6 @@ const PlayerContainer = () => {
   );
   const uriList = eventData.playlist;
 
-  console.log('URI LIST: ');
-  console.log(eventData);
-  console.log(uriList);
-
   useLayoutEffect(() => {
     checkTokenExpiration();
   }, []);
@@ -32,6 +28,7 @@ const PlayerContainer = () => {
       console.log('Refresh needed. Refreshing tokens.');
       dispatch(refreashToken());
     } else {
+      console.log('no refresh needed');
       console.log((expiration - Date.now()) / 60000);
     }
   };
@@ -41,7 +38,7 @@ const PlayerContainer = () => {
     return expiration - Date.now() < 20 * 60 * 1000;
   };
 
-  return token ? (
+  return (
     <div className='player-container'>
       <EventNav eventData={eventData} />
       <PlayerDisplay eventData={eventData} />
@@ -51,11 +48,7 @@ const PlayerContainer = () => {
         autoPlay={true}
         styles={playerStyle}
         callback={(state) => {
-          console.log(state);
           checkTokenExpiration();
-          if (state.devices.length < 1) {
-            dispatch(refreashToken());
-          }
           if (state.status === 'ERROR') {
             console.log('Error state reached');
             dispatch(redirectToLogin());
@@ -63,8 +56,6 @@ const PlayerContainer = () => {
         }}
       />
     </div>
-  ) : (
-    ''
   );
 };
 

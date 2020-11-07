@@ -9,8 +9,10 @@ import {
   addToken,
 } from '../../actions/appActions';
 import { initializeEventData } from '../../actions/playerActions';
+import { generateError } from '../../actions/errorActions';
 import { fetchShows } from '../../api';
 import LoadingPage from './LoadingPage';
+import ErrorContainer from '../error/ErrorContainer';
 import './SearchPage.css';
 
 const SearchPage = () => {
@@ -36,7 +38,6 @@ const SearchPage = () => {
   }
 
   const clickHandler = async (values) => {
-    // TODO: Error handling for bad ticketmaster request:
     const { city } = values;
     dispatch(setAsLoading());
     localStorage.setItem('formData', JSON.stringify(values));
@@ -44,10 +45,8 @@ const SearchPage = () => {
     dispatch(finishedLoading());
     if (data.error) {
       //dispatch error
-      console.log(data.error);
-    } else if (data.error) {
-      //dispatch error
-      console.log(data.error);
+      dispatch(generateError(data.error));
+      console.log('Search error: ', data.error.msg);
     } else {
       dispatch(initializeEventData(data));
       history.push('/playback');
@@ -56,11 +55,11 @@ const SearchPage = () => {
 
   return (
     <div className='Search-container'>
+      <ErrorContainer />
       {!isLoading && (
         <InputForm callback={clickHandler} savedValues={formData} />
       )}
       {isLoading && <LoadingPage />}
-      {/* Error display */}
     </div>
   );
 };

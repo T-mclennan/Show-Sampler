@@ -58,8 +58,4 @@ export const finishedLoading = () => {
   };
 };
 
-export const noArtistsFound = () => {};
-
-export const ticketMasterError = () => {};
-
 export const toggleDarkMode = () => {};

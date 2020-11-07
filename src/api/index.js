@@ -9,12 +9,16 @@ export const fetchShows = async (city, token) => {
         city: city,
       },
     });
-    const filtered = await generatePlaylists(data, token);
-    console.log(filtered);
-    return filtered;
+    if (data.error) {
+      return data;
+    } else {
+      const filtered = await generatePlaylists(data, token);
+      console.log(filtered);
+      return filtered;
+    }
   } catch (error) {
     console.log(error);
-    return { error };
+    return { error: { msg: error } };
   }
 };
 

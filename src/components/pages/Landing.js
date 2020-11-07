@@ -7,7 +7,7 @@ const Landing = () => {
   const dispatch = useDispatch();
 
   const clickHandler = () => {
-    dispatch(redirectToLogin());
+    redirectToLogin();
   };
 
   return (

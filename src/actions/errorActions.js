@@ -10,3 +10,8 @@ export const clearErrors = () => {
     type: 'CLEAR_ERRORS',
   };
 };
+
+export const generateError = ({ msg, status = null }) => (dispatch) => {
+  dispatch(returnErrors(msg, status));
+  setTimeout(() => dispatch(clearErrors()), 5000);
+};

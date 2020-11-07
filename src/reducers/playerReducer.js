@@ -1,6 +1,5 @@
 const initialState = {
   event_index: 0,
-  // current_event_data: null,
   total_event_data: null,
   event_count: 0,
   is_loading: false,

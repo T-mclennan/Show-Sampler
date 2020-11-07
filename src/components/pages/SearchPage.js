@@ -45,6 +45,9 @@ const SearchPage = () => {
     if (data.error) {
       //dispatch error
       console.log(data.error);
+    } else if (data.error) {
+      //dispatch error
+      console.log(data.error);
     } else {
       dispatch(initializeEventData(data));
       history.push('/playback');

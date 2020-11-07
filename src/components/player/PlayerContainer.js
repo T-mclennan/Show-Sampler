@@ -6,7 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import './player.css';
 
 import PropTypes from 'prop-types';
-import { redirectToLogin, refreashToken } from '../../actions/appActions';
+import {
+  redirectToLogin,
+  refreashToken,
+  isTokenExpired,
+} from '../../actions/appActions';
 
 const PlayerContainer = () => {
   const dispatch = useDispatch();
@@ -24,7 +28,7 @@ const PlayerContainer = () => {
   }, []);
 
   const checkTokenExpiration = () => {
-    if (isRefreshNeeded(expiration)) {
+    if (isTokenExpired(expiration)) {
       console.log('Refresh needed. Refreshing tokens.');
       dispatch(refreashToken());
     } else {
@@ -34,9 +38,9 @@ const PlayerContainer = () => {
   };
 
   //Refresh needed if <20 mins left in token:
-  const isRefreshNeeded = (expiration) => {
-    return expiration - Date.now() < 20 * 60 * 1000;
-  };
+  // const isRefreshNeeded = (expiration) => {
+  //   return expiration - Date.now() < 20 * 60 * 1000;
+  // };
 
   return (
     <div className='player-container'>

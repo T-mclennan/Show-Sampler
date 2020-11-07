@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { clearPlayerData } from './playerActions';
+import { returnErrors } from './errorActions';
 
 export const redirectToLogin = () => {
   window.location = 'http://localhost:8888/login';
@@ -21,6 +22,10 @@ export const clearAppData = () => {
 export const clearData = () => (dispatch) => {
   dispatch(clearAppData);
   dispatch(clearPlayerData);
+};
+
+export const isTokenExpired = (expiration) => {
+  return expiration - Date.now() < 10 * 60 * 1000;
 };
 
 export const refreashToken = () => (dispatch) => {
@@ -52,5 +57,9 @@ export const finishedLoading = () => {
     type: 'FINISHED_LOADING',
   };
 };
+
+export const noArtistsFound = () => {};
+
+export const ticketMasterError = () => {};
 
 export const toggleDarkMode = () => {};

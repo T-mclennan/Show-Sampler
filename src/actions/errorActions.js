@@ -1,7 +1,7 @@
-export const returnErrors = (msg, status) => {
+export const returnErrors = (msg, status, id = null) => {
   return {
     type: 'GET_ERRORS',
-    payload: { msg, status },
+    payload: { msg, status, id },
   };
 };
 

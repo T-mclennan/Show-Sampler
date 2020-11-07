@@ -3,30 +3,40 @@
 //  - Search history
 //  - Color scheme
 
-//Show_data refers to pre-processed data from ticketmaster.
-//This is different from event_data in the playerReducer, which is processed.
 const initialState = {
-  auth_token: '',
+  auth_token: null,
   color_scheme: 'light',
+  is_authenticated: false,
   is_loading: false,
-  is_error: false,
-  error_message: '',
 };
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TOKEN':
       const auth = action.payload;
-      return { ...state, auth_token: auth };
 
+      return {
+        ...state,
+        auth_token: auth,
+      };
+
+    case 'LOG_OUT_USER':
+    case 'AUTH_ERROR':
     case 'CLEAR_APP_DATA':
-      return initialState;
+      return {
+        auth_token: null,
+        is_authenticated: false,
+        is_loading: false,
+      };
 
     case 'SET_AS_LOADING':
       return { ...state, is_loading: true };
 
     case 'FINISHED_LOADING':
       return { ...state, is_loading: false };
+
+    case 'AUTHENTICATE_USER':
+      return { ...state, is_authenticated: true };
 
     default:
       return state;

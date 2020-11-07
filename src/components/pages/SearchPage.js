@@ -55,11 +55,11 @@ const SearchPage = () => {
 
   return (
     <div className='Search-container'>
-      <ErrorContainer />
       {!isLoading && (
         <InputForm callback={clickHandler} savedValues={formData} />
       )}
       {isLoading && <LoadingPage />}
+      <ErrorContainer />
     </div>
   );
 };

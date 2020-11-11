@@ -20,8 +20,8 @@ export const clearAppData = () => {
 };
 
 export const clearData = () => (dispatch) => {
-  dispatch(clearAppData);
-  dispatch(clearPlayerData);
+  dispatch(clearAppData());
+  dispatch(clearPlayerData());
   localStorage.removeItem('state')
 };
 
@@ -30,7 +30,6 @@ export const isTokenExpired = (expiration) => {
 };
 
 export const refreashToken = () => (dispatch) => {
-  console.log('refresh token');
   axios
     .get('http://localhost:8888/refresh', { withCredentials: true })
     .then((res) => {

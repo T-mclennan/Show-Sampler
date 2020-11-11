@@ -1,12 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { redirectToLogin } from '../../actions/appActions';
+import { redirectToLogin, authenticateUser } from '../../actions/appActions';
 import './Landing.css';
 
 const Landing = () => {
   const dispatch = useDispatch();
 
   const clickHandler = () => {
+    dispatch(authenticateUser())
     redirectToLogin();
   };
 

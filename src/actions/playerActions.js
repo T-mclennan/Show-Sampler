@@ -31,14 +31,12 @@ export const clearPlayerData = () => {
 };
 
 export const isLoading = () => {
-  console.log('set as loading.');
   return {
     type: 'SET_AS_LOADING',
   };
 };
 
 export const isFinishedLoading = () => {
-  console.log('set as not loading.');
   return {
     type: 'SET_AS_NOT_LOADING',
   };

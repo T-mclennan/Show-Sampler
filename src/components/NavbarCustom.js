@@ -1,19 +1,19 @@
 import React from 'react';
+import {useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Button, Nav, NavDropdown } from 'react-bootstrap';
+import {clearData} from '../actions/appActions'
 import './Navbar.css';
 
-export default function NavbarCustom() {
-  console.log('navbar');
+const NavbarCustom = () => {
+
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(clearData());
+  }
+
   return (
-    // <Navbar className='navbar' fluid collapseOnSelect>
-    //   <Navbar.Header>
-    //     <Navbar.Brand>
-    //       <Link to='/'>Show Sampler</Link>
-    //     </Navbar.Brand>
-    //     <Navbar.Toggle />
-    //   </Navbar.Header>
-    // </Navbar>
+
     <Navbar collapseOnSelect expand='xl' bg='light' variant='light'>
       <Navbar.Brand href='#home'>Show Sampler</Navbar.Brand>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
@@ -35,11 +35,13 @@ export default function NavbarCustom() {
         </Nav>
         <Nav>
           <Nav.Link href='#deets'>More deets</Nav.Link>
-          <Nav.Link eventKey={2} href='#memes'>
-            Dank memes
+          <Nav.Link onClick={() => logoutHandler()}>
+            Logout
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
 }
+
+export default NavbarCustom;

@@ -7,6 +7,7 @@ import {
   setAsLoading,
   finishedLoading,
   addToken,
+  authenticateUser,
 } from '../../actions/appActions';
 import { initializeEventData } from '../../actions/playerActions';
 import { generateError } from '../../actions/errorActions';
@@ -24,6 +25,7 @@ const SearchPage = () => {
   const expiration = params.get('expiration');
   if (auth && expiration) {
     dispatch(addToken({ token: auth, expiration }));
+    dispatch(authenticateUser())
     history.replace('/search');
   }
   const { token } = useSelector((state) => state.appReducer.auth_token);
@@ -44,7 +46,6 @@ const SearchPage = () => {
     const data = await fetchShows(city, token);
     dispatch(finishedLoading());
     if (data.error) {
-      //dispatch error
       dispatch(generateError(data.error));
       console.log('Search error: ', data.error.msg);
     } else {

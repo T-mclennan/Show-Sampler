@@ -22,6 +22,7 @@ export const clearAppData = () => {
 export const clearData = () => (dispatch) => {
   dispatch(clearAppData);
   dispatch(clearPlayerData);
+  localStorage.removeItem('state')
 };
 
 export const isTokenExpired = (expiration) => {
@@ -45,6 +46,12 @@ export const refreashToken = () => (dispatch) => {
     })
     .catch((e) => console.log('Error: ', e));
 };
+
+export const authenticateUser = () => {
+  return {
+    type: 'AUTHENTICATE_USER',
+  };
+}
 
 export const setAsLoading = () => {
   return {

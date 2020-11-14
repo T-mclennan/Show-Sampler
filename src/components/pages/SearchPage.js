@@ -35,6 +35,9 @@ const SearchPage = () => {
   //If we want to re-populate form with past data, we need to parse it.
   const formData = JSON.parse(localStorage.getItem('formData'));
   if (formData) {
+    // console.log('formData')
+    // console.log(formData.date[0])
+    console.log((new Date()).toISOString())
     formData.date[0] = parseISO(formData.date[0]);
     formData.date[1] = parseISO(formData.date[1]);
   }

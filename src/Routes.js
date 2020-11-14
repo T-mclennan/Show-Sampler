@@ -13,12 +13,6 @@ export default function Routes() {
       <Route path='/'>
         <Landing />
       </Route>
-      {/* <Route exact path='/search'>
-        <SearchPage />
-      </Route> */}
-      {/* <Route exact path='/playback'>
-        <PlayerContainer />
-      </Route> */}
     </Switch>
   );
 }

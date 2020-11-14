@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState, useRef} from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import EventNav from './EventNav';
 import PlayerDisplay from './PlayerDisplay';
@@ -13,7 +13,9 @@ import {
 } from '../../actions/appActions';
 
 const PlayerContainer = () => {
+
   const dispatch = useDispatch();
+
 
   const index = useSelector((state) => state.playerReducer.event_index);
   const authToken = useSelector((state) => state.appReducer.auth_token);
@@ -22,9 +24,14 @@ const PlayerContainer = () => {
     (state) => state.playerReducer.total_event_data[index]
   );
   const uriList = eventData.playlist;
+  const [playerDevice, setPlayerDevice] = useState('')
+  const playerDeviceRef = useRef(playerDevice);
+  playerDeviceRef.current = playerDevice
 
   useLayoutEffect(() => {
     checkTokenExpiration();
+    const timer = checkDeviceError()
+    return () => clearTimeout(timer);
   }, []);
 
   const checkTokenExpiration = () => {
@@ -37,28 +44,37 @@ const PlayerContainer = () => {
     }
   };
 
-  //Refresh needed if <20 mins left in token:
-  // const isRefreshNeeded = (expiration) => {
-  //   return expiration - Date.now() < 20 * 60 * 1000;
-  // };
+  const checkDeviceError = () => {
+    const timer = setTimeout(() => {
+      if ( playerDeviceRef.current === '') {
+        window.location.reload(false);
+      }
+    }, 4000)
+    return timer;
+  }
 
   return (
     <div className='player-container'>
       <EventNav eventData={eventData} />
       <PlayerDisplay eventData={eventData} />
-      <SpotifyPlayer
+      {token && <SpotifyPlayer
+        id="player"
         token={token}
         uris={uriList}
+        magnifySliderOnHover={true}
+        persistDeviceSelection={true}
         autoPlay={true}
         styles={playerStyle}
         callback={(state) => {
           checkTokenExpiration();
+          setPlayerDevice(state.currentDeviceId)
+
           if (state.status === 'ERROR') {
             console.log('Error state reached');
             dispatch(redirectToLogin());
           }
         }}
-      />
+      />}
     </div>
   );
 };

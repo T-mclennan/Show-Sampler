@@ -8,14 +8,15 @@ import PropTypes from 'prop-types';
 function PlayerDisplay({ eventData }) {
   // const data = useSelector((state) => state.current_event_data);
 
-  const image = eventData.images ? eventData.images[8] : 'nada';
+  const image = eventData.image ? eventData.image : '';
+  // const image = eventData.images ? eventData.images[8] : 'nada';
 
   return (
     <div className='player-display'>
       {/* <Container> */}
       <Row>
         <Col xs={6} md={4}>
-          {eventData.images ? (
+          {eventData.image ? (
             <Image style={imageStyle} src={image} fluid='true' />
           ) : (
             ''

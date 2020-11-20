@@ -44,6 +44,14 @@ const PlayerContainer = () => {
     }
   };
 
+  // =================================================================
+  //  React-spotify-web-playback has a bug regarding the SDK and device playback.
+  //  It loads fine the first time it's mounted, but subsequent re-mounts due 
+  //  to navigation cause it to lose track of the device it's playing on. 
+  //  To work with this I created a timer to check for the presence of a 
+  //  deviceId after a reasonable load time, and refresh the browser page if so. 
+  // =================================================================
+
   const checkDeviceError = () => {
     const timer = setTimeout(() => {
       if ( playerDeviceRef.current === '') {

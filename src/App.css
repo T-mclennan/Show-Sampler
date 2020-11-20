@@ -1,11 +1,15 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
 :root {
   /* font family */
-  --ff-ss: 'PT Sans', sans-serif;
+  /* --ff-ss: 'PT Sans', sans-serif; */
+  --ff-ss: 'Nunito', sans-serif;
 
   /* font-size */
   --fs-b: 0.8rem;
@@ -31,6 +35,25 @@ body,
 #root,
 #root > div {
   height: 100%;
+}
+
+html {
+  font-family: --ff-ss;
+  font-size: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+section {
+  padding: 5rem 0;
 }
 
 h1 {

@@ -3,8 +3,9 @@ import { Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { redirectToLogin, authenticateUser } from '../../actions/appActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCompass, faGlassCheers} from '@fortawesome/free-solid-svg-icons'
+import { faCompass, faGlassCheers, faQuoteRight} from '@fortawesome/free-solid-svg-icons'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
+import headshot from '../../assets/images/profile-pic.jpg'
 
 
 import './Landing.css';
@@ -66,6 +67,42 @@ const Landing = () => {
           </div>
         </Container>
       </section>
+      <section className="testimonials">
+        <Container className="testimonial">
+          <div className="testimonial">
+            <div className="testimonial-text-box">
+              <p>"Absolutely glorious! Show Sampler changed my life. I wish there were more hours in the day so I could spend more time with Show Sampler."</p>
+            </div>
+            <FontAwesomeIcon className='icon' icon={faQuoteRight} />
+            <div className="testimonial-customer">
+              <img src={headshot} alt="profile"/>
+              <h1>Jerry G</h1>
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="begin-adventure">
+        <Container>
+        <div className="title-heading">
+            <h3>stay safe</h3>
+            <h1>explore digitally</h1>
+            <p>Show Sampler keeps you up to date on when shows re-open.  </p>
+        </div>
+
+        {/* grid-item */}
+        <div className="adventure-grid">
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dignissimos ullam voluptatibus ut earum, voluptas molestias alias. Tenetur ea voluptates repudiandae, nisi eligendi molestias impedit quasi voluptatum sed, atque vel obcaecati ratione, esse rem. Quibusdam.</p>
+        </div>
+
+        {/* grid-item */}
+        <div className="adventure-grid">
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dignissimos ullam voluptatibus ut earum, voluptas molestias alias. Tenetur ea voluptates repudiandae, nisi eligendi molestias impedit quasi voluptatum sed, atque vel obcaecati ratione, esse rem. Quibusdam.</p>
+        </div>
+        </Container>
+      </section>
+      <footer>
+        <p>&copy; 2020 Show Sampler. All rights reserved.</p>
+      </footer>
     </>
   );
 };

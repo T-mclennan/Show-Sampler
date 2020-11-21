@@ -31,7 +31,7 @@
   content: '';
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -3px;
   width: 100%;
   height: 4.7rem;
   background: url('../../assets/images/wave-small.png') center no-repeat;
@@ -164,4 +164,155 @@ button:hover {
   text-transform: uppercase;
   margin: 1rem 0;
   letter-spacing: 0.2rem;
+}
+
+.testimonials {
+  width: 100%;
+  height: 80vh;
+  background: linear-gradient(
+      135deg,
+      rgba(12, 5, 29, 0.9) 0%,
+      rgba(72, 56, 149, 0.1) 100%
+    ),
+    url('../../assets/images/concert3.jpg') center no-repeat fixed;
+  background-size: cover;
+  position: relative;
+}
+
+.testimonials::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 100%;
+  height: 4.7rem;
+  background: url('../../assets/images/wave-small-reversed.png') center
+    no-repeat;
+  background-size: cover;
+}
+
+.testimonial {
+  width: 100%;
+  color: #fafafa;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.testimonial-text-box {
+  padding: 0 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.testimonial-text-box quote {
+  position: absolute;
+  top: -8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8rem;
+  color: #eb648c;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.testimonial-customer img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
+  border: 3px solid #eb648c;
+}
+
+/* adventures */
+
+.adventure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.adventure-grid p {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+footer {
+  padding: 2.5rem 0;
+  background-color: #d7d4ed;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 350px) {
+  .main-message {
+    transform: translateY(40%);
+  }
+}
+
+@media screen and (min-width: 470px) {
+  .hero::before {
+    height: 9.4rem;
+    background: url('../../assets/images/wave-medium.png');
+  }
+}
+
+@media screen and (min-width: 470px) {
+  .hero::before {
+    height: 9.4rem;
+    background: url('../../assets/images/wave-medium.png');
+    background-size: cover;
+  }
+
+  .testimonials::before {
+    height: 9.4rem;
+    background: url('../../assets/images/wave-medium-reversed.png');
+    background-size: cover;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  /* TODO: change navbar styling */
+  header {
+    height: 8rem;
+  }
+
+  .nav-brand {
+    width: 3.5rem;
+  }
+
+  .hero {
+    height: 70vh;
+  }
+
+  .main-message {
+    transform: translateY(70%);
+  }
+
+  .title-heading {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .hero::before {
+    height: 22.7rem;
+    background: url('../../assets/images/wave-large.png');
+    background-size: cover;
+  }
+
+  .testimonials::before {
+    height: 22.7rem;
+    background: url('../../assets/images/wave-large-reversed.png');
+    background-size: cover;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .hero {
+    height: 75vh;
+  }
 }

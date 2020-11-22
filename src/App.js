@@ -2,6 +2,7 @@ import React from 'react';
 import Routes from './Routes';
 import { useDispatch, useSelector } from 'react-redux';
 import NavbarCustom from './components/NavbarCustom';
+import Navbar from './components/Navbar'
 import { isTokenExpired, clearData, authenticateUser } from './actions/appActions';
 import './App.css';
 
@@ -23,7 +24,7 @@ function App() {
 
   return (
     <div className='App-container'>
-      <NavbarCustom />
+      <Navbar/>
       <Routes />
     </div>
   );

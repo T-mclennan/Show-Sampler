@@ -48,7 +48,7 @@ const Landing = () => {
               <div className="activities-grid-item enhance-travel">
               <FontAwesomeIcon className='icon' icon={faCompass} />
                 <h1>Enhance Travel</h1>
-                <p>With Show Sampler you can find the right destination for your trip, or the right entertainment for wherever you go.</p>
+                <p>With Show Sampler you can find the right destination for your trip, or the perfect entertainment for wherever you go.</p>
               </div>  
 
               {/* grid item #1 */}

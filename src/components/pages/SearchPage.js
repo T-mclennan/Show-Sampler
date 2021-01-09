@@ -58,7 +58,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div className='Search-container'>
+    <div className='search-container'>
       {!isLoading && (
         <InputForm callback={clickHandler} savedValues={formData} />
       )}

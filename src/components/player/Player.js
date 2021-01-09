@@ -31,6 +31,7 @@ const playerStyle = {
   savedColor: '#fff',
   trackArtistColor: '#ccc',
   trackNameColor: '#fff',
+  height: '10rem',
 };
 
 

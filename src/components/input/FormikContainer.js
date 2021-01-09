@@ -44,8 +44,8 @@ function FormikContainer({ callback, savedValues }) {
       {(formik) => (
         <Form>
           <FormikControl control='input' type='text' label='City' name='city' />
-          <FormikControl control='date' label='Pick a Date' name='date' />
-          <CollapsableCheckbox label={'Genre'} options={checkboxOptions} />
+          {/* <FormikControl control='date' label='Pick a Date' name='date' />
+          <CollapsableCheckbox label={'Genre'} options={checkboxOptions} /> */}
           <button
             className='form-button'
             type='submit'
